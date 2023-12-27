@@ -1,0 +1,52 @@
+user table tak a state and zone id delete korte hobe
+sokol controller a data session
+
+restaurant controller validation remaining both insert and update
+j page tak a logout koruk nah keno oi page a redirect korat try korte hobe
+restaurant delete with gallery food and category delete korte hobe
+mone rakte hobe jokon jeta delte hoobe oitar related sob kichu delete korte hobe
+
+add to cart er somoy defaul tax vat calculate korte hobe
+discount add korar somoy discount type diya add korte hobe pore calculate korar somoy type deka calculate korte hobe
+
+popular restaurant add korte hobe
+
+popular cities mark from admin
+
+cities or other variable sob khane jeno value pawa jai tah korte hobe construct or boot function diya
+
+isPromoted to show product without id can be sorted by reviews or by admin choice or inserted last order by id desc
+
+discount type can take by choice percentage or amount then convert that ratio into amount
+{{Session::get('response')['class']}}
+superadmin/restaurant/create
+
+
+for date class has to use format-picker
+restaurant.all.blade.php all file included
+
+git remote set-url origin https://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@github.com/tawhid12/bdghcanada-restaurant.git
+
+default pagination change korte hobe
+search keywords = how to modify laravel 8 pagination
+https://stackoverflow.com/questions/67839557/how-to-customize-default-pagination-in-laravel-8
+https://www.codecheef.org/article/laravel-7-custom-pagination-example-tutorial
+
+
+edit user password personal information remove not done yet
+
+
+
+   $('.cart-btn').on('click',function(){
+        alert('ok');
+        @php
+        session()->put('previous-url', url()->previous());
+        @endphp
+    });
+
+ if (session()->has('previous-url'))
+        $url = session()->get('previous-url');
+
+@php
+print_r(session()->get('previous-url'));die;
+@endphp
