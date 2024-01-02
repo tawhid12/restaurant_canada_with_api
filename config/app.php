@@ -56,8 +56,8 @@ return [
 
     //'asset_url' => env('ASSET_URL', null),
 
-    'url' => env('APP_URL', "https://restaurant2.bdhscanada.com/"),//https://restaurant2.bdhscanada.com/
-    'asset_url' => env('ASSET_URL', "https://restaurant2.bdhscanada.com").'/public',//https://restaurant2.bdhscanada.com/'
+    //'url' => env('APP_URL', "https://restaurant2.bdhscanada.com/"),//https://restaurant2.bdhscanada.com/
+    //'asset_url' => env('ASSET_URL', "https://restaurant2.bdhscanada.com").'/public',//https://restaurant2.bdhscanada.com/'
 
     /*
     |--------------------------------------------------------------------------
