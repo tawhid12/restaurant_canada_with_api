@@ -64,7 +64,8 @@
                         <div class="item">
                             <div class="osahan-category-item">
                                 <a href="{{route('restaurantDetl',$popular_food_item->id)}}">
-                                    <img class="img-fluid" src="{{Storage::url($popular_food_item->thumbnail)}}" alt="">
+
+                                    <img class="img-fluid" src="{{Storage::url(images/food/thumbnail/$popular_food_item->thumbnail)}}" alt="">
                                     <h6>{{$popular_food_item->name}}</h6>
                                     <p>{{$popular_food_item->price}}</p>
                                 </a>
