@@ -54,7 +54,7 @@ return [
 
     //'url' => env('APP_URL', 'http://localhost'),
 
-    //'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'http://localhost/restaurant2/public'),
 
     //'url' => env('APP_URL', "https://restaurant2.bdhscanada.com/"),//https://restaurant2.bdhscanada.com/
     //'asset_url' => env('ASSET_URL', "https://restaurant2.bdhscanada.com").'/public',//https://restaurant2.bdhscanada.com/'

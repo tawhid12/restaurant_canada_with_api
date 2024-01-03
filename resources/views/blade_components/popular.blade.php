@@ -34,7 +34,7 @@
                                     <div class="member-plan position-absolute"><span
                                             class="badge badge-dark">Promoted</span></div>
                                     <a href="{{route('restaurantDetl',$promo_rs->id)}}">
-                                        <img src="{{asset('/')}}storage/app/public/images/feature_image/{{$promo_rs->feature_image}}" class="img-fluid item-img">
+                                        <img src="{{asset($promo_rs->logo)}}" class="img-fluid item-img">
                                     </a>
                                 </div>
                                 <div class="p-3 position-relative">

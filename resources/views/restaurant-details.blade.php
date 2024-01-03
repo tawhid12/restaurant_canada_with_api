@@ -265,7 +265,7 @@
                                     <div class="owl-carousel owl-theme homepage-ad">
                                         @forelse($restaurant->galleries as $gallery)
                                         <div class="item">
-                                            <img class="img-fluid" src="{{asset('/')}}storage/images/gallery/{{$gallery->gallery_img}}">
+                                            <img class="img-fluid" src="{{asset($gallery->gallery_img)}}">
                                         </div>
                                         @empty
                                         @endforelse

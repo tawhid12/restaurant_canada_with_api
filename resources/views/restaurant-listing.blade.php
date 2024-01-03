@@ -253,7 +253,7 @@
                                 <div class="favourite-heart text-danger position-absolute"><a href="detail.html"><i class="icofont-heart"></i></a></div>
                                 <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div>
                                 <a href="{{route('restaurantDetl',$res->id)}}">
-                                    <img src="{{asset('/')}}storage/app/public/images/feature_image/{{$res->feature_image}}" class="img-fluid item-img" loading="lazyload">
+                                    <img src="{{asset($res->feature_image)}}" class="img-fluid item-img" loading="lazyload">
                                 </a>
                             </div>
                             @php

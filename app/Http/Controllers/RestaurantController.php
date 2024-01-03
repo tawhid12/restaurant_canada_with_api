@@ -50,15 +50,15 @@ class RestaurantController extends Controller
      */
     public function store(/*NewRestaurantRequest*/ Request $request)
     {
-        //dd($request);die;
+        //dd($request->toArray());die;
         try {
             $resturant = new Restaurant();
             $resturant->user_id =  encryptor('decrypt', request()->session()->get('user'));
             $resturant->state_id = $request->state_id;
             $resturant->city_id = $request->city_id;
             $resturant->name = $request->name;
-            if($request->has('logo')) $resturant->logo = $this->uploadImage($request->file('logo'), 'logo');
-            if($request->has('feature_image')) $resturant->feature_image = $this->uploadImage($request->file('feature_image'), 'feature_image');
+            if($request->has('logo')) $resturant->logo = 'uploads/'.$this->uploadImage($request->file('logo'), 'uploads/logo');
+            if($request->has('feature_image')) $resturant->feature_image = 'uploads/'.$this->uploadImage($request->file('feature_image'), 'feature_image');
             $resturant->description = $request->description;
             $resturant->address = $request->address;
             $resturant->latitude = $request->latitude;
@@ -81,14 +81,10 @@ class RestaurantController extends Controller
             $image = array();
             if($file = $request->file('gallery_img')){
                 foreach($file as $file){
-                    $image_name = md5(rand(1000,10000));
-                    $ext = strtolower($file->getClientOriginalExtension());
-                    $image_full_name = $image_name.'.'.$ext;
-                    $uploade_path = 'images/gallery/';
+                    $uploade_path = 'uploads/gallery/';
                     //$image_url = $uploade_path.$image_full_name;
                     //$file->move($uploade_path,$image_full_name);
-                    Storage::disk('public')->putFileAs("images/gallery/", $file, $image_full_name);
-                    $image[] = $image_name;
+                    $image_full_name= $this->uploadImage($file, $uploade_path);
                     Gallery::insert([
                         'gallery_img' => $image_full_name,
                         'restaurant_id' => $resturant->id,
@@ -153,8 +149,8 @@ class RestaurantController extends Controller
             $resturant->state_id = $request->state_id;
             $resturant->city_id = $request->city_id;
             $resturant->name = $request->name;
-            if($request->has('logo')) $resturant->logo = $this->uploadImage($request->file('logo'), 'logo');
-            if($request->has('feature_image')) $resturant->feature_image = $this->uploadImage($request->file('feature_image'), 'feature_image');
+            if($request->has('logo')) $resturant->logo = 'uploads/logo/'.$this->uploadImage($request->file('logo'), 'uploads/logo');
+            if($request->has('feature_image')) $resturant->feature_image = 'uploads/feature_image/'.$this->uploadImage($request->file('feature_image'), 'uploads/feature_image');
             $resturant->description = $request->description;
             $resturant->address = $request->address;
             $resturant->latitude = $request->latitude;
@@ -174,6 +170,23 @@ class RestaurantController extends Controller
             }
             $resturant->opening_time = Carbon::parse($request->opening_time)->format('H:i:s');
             $resturant->closing_time = Carbon::parse($request->closing_time)->format('H:i:s');
+            $image = array();
+            if($file = $request->file('gallery_img')){
+                foreach($file as $file){
+                    $uploade_path = 'uploads/gallery/';
+                    //$image_url = $uploade_path.$image_full_name;
+                    //$file->move($uploade_path,$image_full_name);
+                    $image_full_name= $this->uploadImage($file, $uploade_path);
+                    Gallery::insert([
+                        'gallery_img' => $uploade_path.$image_full_name,
+                        'restaurant_id' => $resturant->id,
+                        'user_id' => currentUserId(),
+                        "created_at" =>  date('Y-m-d H:i:s'),
+                         "updated_at" => date('Y-m-d H:i:s'),
+                    ]);
+                }
+  
+            }
             if(!!$resturant->save()){
                 if(currentUser() == 'superadmin')
                 return redirect(route(currentUser().'.allRestaurant'))->with($this->responseMessage(true, null, 'Restaurant Updated'));

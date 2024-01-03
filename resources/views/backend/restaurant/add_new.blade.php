@@ -102,7 +102,7 @@
 					<div class="col-lg-4 mb-1">
 						<label> Delivery Time: </label>
 						<select name="delivery_time" class="select2 form-control">
-							<option hidden>Choose Delivery Slot</option>
+							<option value="">Choose Delivery Slot</option>
 							<option value="1">15-20 Min</option>
 							<option value="2">20-30 Min</option>
 							<option value="3">30-40 Min</option>
