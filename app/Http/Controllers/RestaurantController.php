@@ -48,7 +48,7 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NewRestaurantRequest $request)
+    public function store(/*NewRestaurantRequest*/ Request $request)
     {
         //dd($request);die;
         try {
