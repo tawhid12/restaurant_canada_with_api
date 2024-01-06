@@ -15,7 +15,7 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('order_id')->after('id');
+			$table->integer('order_id');
             $table->integer('food_id');
             $table->integer('user_id');
 			$table->integer('restaurant_id');
