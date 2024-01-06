@@ -82,6 +82,7 @@ class AuthenticationController extends Controller
             $user->status = 1;
             $user->userCreatorId = 1;
             $user->created_at = Carbon::now();
+            $user->device_id = $request->device_id;
 
             if (!!$user->save()) {
                 $token = $this->tokenGen($user->id);

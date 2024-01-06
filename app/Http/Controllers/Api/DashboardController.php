@@ -37,12 +37,32 @@ class DashboardController extends Controller
     else
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
+  public function deliveryBoyDashboard($token)
+  {
+    $user = User::where('api_token', $token)->first();
+    if (!$user)
+      return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
+    /* ==Processing Order== */
+    $data['processing_order'] = Order::where(['order_status_id' => 2, 'driver_id' => $user->id])->count();
+    /* ==Complete Order== */
+    $data['ride_complete'] = Order::where(['order_status_id' => 5, 'driver_id' => $user->id])->count();
+    /* ==Total Rating Count== */
+    $data['total_rating'] = Order::where('driver_id', $user->id)->count();
+    /* ==Total Payment== */
+    $data['total_payment'] = Payment::where(['status' => 1, 'driver_id' => $user->id])->count();
+    /* ==Graph Data== */
+    /* no instructions */
+    if ($data)
+      return response()->json(array('data' => $data), 200);
+    else
+      return response()->json(array('errors' => [0 => 'No Data found']), 400);
+  }
   public function pendingOrder($token)
   {
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $orders = Order::with(['delivery_address','payment'])->where('order_status_id',1)->get();
+    $orders = Order::with(['delivery_address', 'payment'])->where('order_status_id', 1)->get();
     /*echo '<pre>';
     print_r($orders->toArray());die;*/
     foreach ($orders as $order) {
@@ -52,12 +72,11 @@ class DashboardController extends Controller
       print_r($json_to_array['cart']);
       die;*/
 
-      $data[$order->id]= array(
+      $data[$order->id] = array(
         'order_detl' => $json_to_array,
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
       );
-     
     }
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
@@ -69,7 +88,7 @@ class DashboardController extends Controller
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $orders = Order::with(['delivery_address','payment'])->where('order_status_id',2)->get();
+    $orders = Order::with(['delivery_address', 'payment'])->where('order_status_id', 2)->get();
     /*echo '<pre>';
     print_r($orders->toArray());die;*/
     foreach ($orders as $order) {
@@ -79,12 +98,11 @@ class DashboardController extends Controller
       print_r($json_to_array['cart']);
       die;*/
 
-      $data[$order->id]= array(
+      $data[$order->id] = array(
         'order_detl' => $json_to_array,
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
       );
-     
     }
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
@@ -96,7 +114,7 @@ class DashboardController extends Controller
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $orders = Order::with(['delivery_address','payment'])->where('order_status_id',5)->get();
+    $orders = Order::with(['delivery_address', 'payment'])->where('order_status_id', 5)->get();
     /*echo '<pre>';
     print_r($orders->toArray());die;*/
     foreach ($orders as $order) {
@@ -106,39 +124,39 @@ class DashboardController extends Controller
       print_r($json_to_array['cart']);
       die;*/
 
-      $data[$order->id]= array(
+      $data[$order->id] = array(
         'order_detl' => $json_to_array,
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
       );
-     
     }
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
-  public function orderById($token,$id)
+  public function orderById($token, $id)
   {
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $orders = Order::with(['delivery_address','payment'])->where(['id'=>$id, 'user_id' => $user->id])->get();
+    $orders = Order::with(['delivery_address', 'payment'])->where(['id' => $id, 'user_id' => $user->id])->first();
     /*echo '<pre>';
-    print_r($orders->toArray());die;*/
+    print_r($orders[0]->cart->toArray());die;*/
+    //print_r(base64_decode($orders->cart));die;
     foreach ($orders as $order) {
       $format_base_64 = base64_decode($order->cart);
       $json_to_array = json_decode($format_base_64, true);
+      $json_to_array = array_shift($json_to_array);
       /*echo '<pre>';
-      print_r($json_to_array['cart']);
+      print_r(array_shift($json_to_array['cart']));
       die;*/
 
-      $data[$order->id]= array(
-        'order_detl' => $json_to_array,
+      $data = array(
+        'order_detl' => array_shift($json_to_array),
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
       );
-     
     }
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
@@ -146,102 +164,101 @@ class DashboardController extends Controller
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
 
-  public function orderProcessing($token,$id)
+  public function orderProcessing($token, $id)
   {
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $order = Order::with(['delivery_address','payment'])->where(['id'=>$id, 'user_id' => $user->id,'order_status_id' => 1])->first();
-    if(!empty($order) && count($order) > 0){
+    $order = Order::with(['delivery_address', 'payment'])->where(['id' => $id, 'user_id' => $user->id, 'order_status_id' => 1])->first();
+    if (!empty($order) && count($order) > 0) {
       $order->order_status_id = 3;
       $order->save();
       /*echo '<pre>';
       print_r($orders->toArray());die;*/
-    
-        $format_base_64 = base64_decode($order->cart);
-        $json_to_array = json_decode($format_base_64, true);
-        /*echo '<pre>';
+
+      $format_base_64 = base64_decode($order->cart);
+      $json_to_array = json_decode($format_base_64, true);
+      /*echo '<pre>';
         print_r($json_to_array['cart']);
         die;*/
-  
-        $data[$order->id]= array(
-          'order_status_id' => $order->order_status_id,
-          'order_detl' => $json_to_array,
-          'delivery_address' => $order->delivery_address,
-          'payment' => $order->payment,
-        );
-    }else{
+
+      $data[$order->id] = array(
+        'order_status_id' => $order->order_status_id,
+        'order_detl' => $json_to_array,
+        'delivery_address' => $order->delivery_address,
+        'payment' => $order->payment,
+      );
+    } else {
       return response()->json(array('errors' => [0 => 'Invalid Operation']), 400);
     }
 
-     
-    
+
+
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
 
-  public function orderReady($token,$id)
+  public function orderReady($token, $id)
   {
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $order = Order::with(['delivery_address','payment'])->where(['id'=>$id, 'user_id' => $user->id,'order_status_id' => 2])->first();
+    $order = Order::with(['delivery_address', 'payment'])->where(['id' => $id, 'user_id' => $user->id, 'order_status_id' => 2])->first();
     $order->order_status_id = 3;
     $order->save();
     /*echo '<pre>';
     print_r($orders->toArray());die;*/
-  
-      $format_base_64 = base64_decode($order->cart);
-      $json_to_array = json_decode($format_base_64, true);
-      /*echo '<pre>';
+
+    $format_base_64 = base64_decode($order->cart);
+    $json_to_array = json_decode($format_base_64, true);
+    /*echo '<pre>';
       print_r($json_to_array['cart']);
       die;*/
 
-      $data[$order->id]= array(
-        'order_status_id' => $order->order_status_id,
-        'order_detl' => $json_to_array,
-        'delivery_address' => $order->delivery_address,
-        'payment' => $order->payment,
-      );
-     
-    
+    $data[$order->id] = array(
+      'order_status_id' => $order->order_status_id,
+      'order_detl' => $json_to_array,
+      'delivery_address' => $order->delivery_address,
+      'payment' => $order->payment,
+    );
+
+
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
 
-  public function orderCancel($token,$id)
+  public function orderCancel($token, $id)
   {
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
-    $order = Order::with(['delivery_address','payment'])->where(['id'=>$id, 'user_id' => $user->id]) ->whereIn('order_status_id', [1,2,3])->first();
+    $order = Order::with(['delivery_address', 'payment'])->where(['id' => $id, 'user_id' => $user->id])->whereIn('order_status_id', [1, 2, 3])->first();
     $order->order_status_id = 6;
     $order->save();
     /*echo '<pre>';
     print_r($orders->toArray());die;*/
-  
-      $format_base_64 = base64_decode($order->cart);
-      $json_to_array = json_decode($format_base_64, true);
-      /*echo '<pre>';
+
+    $format_base_64 = base64_decode($order->cart);
+    $json_to_array = json_decode($format_base_64, true);
+    /*echo '<pre>';
       print_r($json_to_array['cart']);
       die;*/
 
-      $data[$order->id]= array(
-        'order_status_id' => $order->order_status_id,
-        'order_detl' => $json_to_array,
-        'delivery_address' => $order->delivery_address,
-        'payment' => $order->payment,
-      );
-     
-    
+    $data[$order->id] = array(
+      'order_status_id' => $order->order_status_id,
+      'order_detl' => $json_to_array,
+      'delivery_address' => $order->delivery_address,
+      'payment' => $order->payment,
+    );
+
+
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
       return response()->json(array('errors' => [0 => 'No Data found']), 400);
   }
-
 }

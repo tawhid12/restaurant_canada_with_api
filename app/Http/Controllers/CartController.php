@@ -52,8 +52,8 @@ class CartController extends Controller
         $msg="Congratulation! Product added to cart.";
         $type="";
         $cart = session()->get('cart', []);
-
-        $restaurant_id = array_keys(array_combine(array_keys($cart), array_column($cart, 'restaurant_id')),$r->restaurant_id);
+        $restaurant_id = $r->restaurant_id;
+        //$restaurant_id = array_keys(array_combine(array_keys($cart), array_column($cart, 'restaurant_id')),$r->restaurant_id);
         if(!$restaurant_id && !empty($cart)){
             unset($cart);
         }
@@ -94,6 +94,7 @@ class CartController extends Controller
                         $charge = Restaurant::find($product->restaurant_id);
                     $cart[$id] = [
                         "restaurant_name" => $charge->name,
+                        "restaurant_id" => $restaurant_id,
                         "name" => $product->name,
                         "quantity" => $r->quantity,
                         "price" => $product->price,

@@ -39,6 +39,9 @@ Route::get('owner/order/cancel/{token}/{id}', [DashboardController::class,'order
 /* Cusotmer single Order */
 Route::get('customer/order/{token}/{id}', [DashboardController::class,'orderbyId']);
 
+/* == Delivery Boy Dashboard== */
+Route::get('delivery-boy/dashboard/{token}', [DashboardController::class,'deliveryBoyDashboard']);
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

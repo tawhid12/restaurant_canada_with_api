@@ -15,10 +15,14 @@ class CreatePayments extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->double('price',8,2)->default(0.00);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('restaurant_id');
+            $table->integer('owner_id');
             $table->string('status')->nullable();
             $table->string('method')->nullable();
             $table->timestamps();

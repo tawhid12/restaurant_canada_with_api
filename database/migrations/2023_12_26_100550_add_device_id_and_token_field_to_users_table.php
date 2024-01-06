@@ -27,7 +27,7 @@ class AddDeviceIdAndTokenFieldToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('token');
+            $table->dropColumn('api_token');
             $table->dropColumn('device_id');
         });
     }
