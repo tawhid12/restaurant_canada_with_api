@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Driver extends Model
 {
     use HasFactory;
-    public function food(){
-        return $this->belongsTo(Food::class);
-    }
 }

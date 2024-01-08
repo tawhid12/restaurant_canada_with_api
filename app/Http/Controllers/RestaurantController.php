@@ -57,8 +57,8 @@ class RestaurantController extends Controller
             $resturant->state_id = $request->state_id;
             $resturant->city_id = $request->city_id;
             $resturant->name = $request->name;
-            if($request->has('logo')) $resturant->logo = 'uploads/'.$this->uploadImage($request->file('logo'), 'uploads/logo');
-            if($request->has('feature_image')) $resturant->feature_image = 'uploads/'.$this->uploadImage($request->file('feature_image'), 'feature_image');
+            if($request->has('logo')) $resturant->logo = 'uploads/logo/'.$this->uploadImage($request->file('logo'), 'uploads/logo');
+            if($request->has('feature_image')) $resturant->feature_image = 'uploads/feature_image/'.$this->uploadImage($request->file('feature_image'), 'feature_image');
             $resturant->description = $request->description;
             $resturant->address = $request->address;
             $resturant->latitude = $request->latitude;
@@ -86,7 +86,7 @@ class RestaurantController extends Controller
                     //$file->move($uploade_path,$image_full_name);
                     $image_full_name= $this->uploadImage($file, $uploade_path);
                     Gallery::insert([
-                        'gallery_img' => $image_full_name,
+                        'gallery_img' => $uploade_path.$image_full_name,
                         'restaurant_id' => $resturant->id,
                         'user_id' => currentUserId(),
                         "created_at" =>  date('Y-m-d H:i:s'),

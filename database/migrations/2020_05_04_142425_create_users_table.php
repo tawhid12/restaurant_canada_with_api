@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('mobileNumber', 20)->unique()->nullable();
             $table->string('timezone')->nullable();
             $table->string('password', 32);
-            $table->boolean('status', 1)->default(1)->comment('0 => inactive, 1 => active, 2 => pending, 3 => freez, 4 => block' );
+            $table->boolean('status', 1)->default(1)->comment('0 => inactive, 1 => active, 2 => pending, 3 => freeze, 4 => block','5 => Available','6 => Not Available','7 => Away' );
             $table->unsignedTinyInteger('roleId');
             $table->unsignedInteger('userCreatorId')->nullable();
             $table->foreign('roleId')->references('id')->on('roles')->onDelete('cascade');

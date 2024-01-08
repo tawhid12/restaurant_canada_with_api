@@ -41,6 +41,9 @@ Route::get('customer/order/{token}/{id}', [DashboardController::class,'orderbyId
 
 /* == Delivery Boy Dashboard== */
 Route::get('delivery-boy/dashboard/{token}', [DashboardController::class,'deliveryBoyDashboard']);
+Route::get('delivery-boy/order-complete/{token}', [DashboardController::class,'orderComplete']);
+Route::get('delivery-boy/list-of-order-for-delivery/{token}', [DashboardController::class,'list_of_order_for_delivery']);
+Route::get('delivery-boy/pick-order-for-delivery/{token}', [DashboardController::class,'pick_order_for_delivery']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -47,7 +47,7 @@ class FoodController extends Controller
         try {
             $food = new Food;
 
-            if($request->has('thumbnail')) $food->thumbnail = $this->uploadImage($request->file('thumbnail'), 'food/thumbnail');
+            if($request->has('thumbnail')) $food->thumbnail = 'uploads/food/thumbnail/'.$this->uploadImage($request->file('thumbnail'), 'food/thumbnail');
             $food->user_id =  encryptor('decrypt', request()->session()->get('user'));
             $food->restaurant_id =  $request->restaurant_id;
             $food->category_id = $request->category_id;
@@ -100,10 +100,10 @@ class FoodController extends Controller
             $food=Food::find(encryptor('decrypt', $request->id));
 
             if($request->has('thumbnail')) 
-                if($this->deleteImage($food->thumbnail, 'product/thumbnail'))
-                    $food->thumbnail = $this->uploadImage($request->file('thumbnail'), 'product/thumbnail');
+                if($this->deleteImage($food->thumbnail, 'uploads/food/thumbnail'))
+                    $food->thumbnail = $this->uploadImage($request->file('thumbnail'), 'uploads/food/thumbnail');
                 else
-                    $food->thumbnail = $this->uploadImage($request->file('thumbnail'), 'product/thumbnail');
+                    $food->thumbnail = 'uploads/food/thumbnail'.$this->uploadImage($request->file('thumbnail'), 'uploads/food/thumbnail');
 
 
             $food->user_id =  encryptor('decrypt', request()->session()->get('user'));
@@ -146,7 +146,7 @@ class FoodController extends Controller
         try {
             $food = Food::find(encryptor('decrypt', $id));
             if($food != null){
-                $this->deleteImage($food->thumbnail, 'Food/thumbnail');
+                $this->deleteImage($food->thumbnail, 'food/thumbnail');
                 $food->delete();
                 return redirect(route(currentUser().'.allFood'))->with($this->responseMessage(true, null, 'Food deleted'));
             }

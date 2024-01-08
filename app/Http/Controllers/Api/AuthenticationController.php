@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\UserDetail;
 use App\Models\Company;
 use App\Models\User;
+use App\Models\Driver;
 
 use Exception;
 use Carbon\Carbon;
@@ -133,6 +134,10 @@ class AuthenticationController extends Controller
 
                 $userd->address = $request->address;
                 if ($userd->save())
+                    /* Drive Info */    
+                    $driver = New Driver();
+                    $driver->user_id = $user->id;
+                    $driver->save();
                     return response()->json(array('user' => $user, 'token' => $token), 200);
             }
         } catch (Exception $e) {
