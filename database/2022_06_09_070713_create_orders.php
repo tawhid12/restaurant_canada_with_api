@@ -33,10 +33,12 @@ class CreateOrders extends Migration
             $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('delivery_address_id')->index()->nullable();
             $table->foreign('delivery_address_id')->references('id')->on('delivery_addresses')->onDelete('cascade');
-            $table->unsignedBigInteger('payment_id')->index();
+            $table->unsignedBigInteger('payment_id');
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->timestamps();
         });
+
+        
         
     }
 
