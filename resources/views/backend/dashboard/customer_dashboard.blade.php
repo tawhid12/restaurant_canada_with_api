@@ -16,7 +16,7 @@
                         <div class="osahan-user-media">
                             @php 
                             $UserData = \App\Models\User::where("id", currentUserId())->first();
-					        $photo= $UserData->details?->photo;
+					        $photo = $UserData->details ? $UserData->details->photo : null;
                             @endphp
                             @if($photo)
                             <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('storage/app/public/images/user/photo/'.$photo)}}" alt="user profile picture">
