@@ -73,7 +73,7 @@ class DashboardController extends Controller
     if (count($orders) > 0) {
       foreach ($orders as $order) {
         $order_data = [
-          //'id' => $order->id,
+          'id' => $order->id,
           'customer' => $order->user?$order->user->name : null,
           'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
@@ -89,7 +89,7 @@ class DashboardController extends Controller
             'price_per_qty' => $cart->price,
           ];
         }
-        $data[$order->id] = $order_data;
+        $data[] = $order_data;
       }
     }
     if (!empty($data) && count($data) > 0)

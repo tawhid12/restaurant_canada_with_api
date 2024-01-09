@@ -50,9 +50,18 @@ class AuthenticationController extends Controller
                 $query->where(['users.email' => $request->username, 'users.password' => md5($request->password), 'users.status' => 1]);
             })->first();
 
+
         if ($user) {
             $token = $this->tokenGen($user->userId);
             // Login as User
+            $user['name'] = $user->name ?? '';
+            $user['username'] = $user->username ?? '';
+            $user['email'] = $user->email ?? '';
+            $user['mobileNumber'] = $user->mobileNumber ?? '';
+            $user['roleType'] = $user->roleType ?? '';
+            $user['roleId'] = $user->roleId ?? '';
+            $user['photo'] = $user->photo ?? '';
+            $user['roleIdentity'] = $user->roleIdentity ?? '';
             return response()->json(array('success' => 1, 'token' => $token, 'user' => $user), 200);
         } else {
             return response()->json(array('errors' => [0 => 'Credentials Doesn\'t Match !']), 400);
@@ -134,11 +143,11 @@ class AuthenticationController extends Controller
 
                 $userd->address = $request->address;
                 if ($userd->save())
-                    /* Drive Info */    
-                    $driver = New Driver();
-                    $driver->user_id = $user->id;
-                    $driver->save();
-                    return response()->json(array('user' => $user, 'token' => $token), 200);
+                    /* Drive Info */
+                    $driver = new Driver();
+                $driver->user_id = $user->id;
+                $driver->save();
+                return response()->json(array('user' => $user, 'token' => $token), 200);
             }
         } catch (Exception $e) {
             return response()->json(array('errors' => [0 => 'Please try agian']), 400);
