@@ -730,7 +730,7 @@
                             $t_discount = 0;
                             $t_vat = 0;
                             $delivery_fee = $restaurant->delivery_fee;
-                            print_r(session()->get('cart'));
+                            //print_r(session()->get('cart'));
                         @endphp
                         @foreach ($cart as $c)
                             @php
