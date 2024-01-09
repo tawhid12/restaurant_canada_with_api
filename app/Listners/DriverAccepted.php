@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listners;
 
-use App\Events\OrderPlaced;
-use App\Jobs\AssignDeliveryBoy;
+use App\Events\DriverAssigned;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class OrderPlacedListener
+class DriverAccepted
 {
     /**
      * Create the event listener.
@@ -22,11 +21,11 @@ class OrderPlacedListener
     /**
      * Handle the event.
      *
-     * @param  \App\Events\OrderPlaced  $event
+     * @param  \App\Events\DriverAssigned  $event
      * @return void
      */
-    public function handle(OrderPlaced $event)
+    public function handle(DriverAssigned $event)
     {
-        AssignDeliveryBoy::dispatch($event->order);
+        //
     }
 }

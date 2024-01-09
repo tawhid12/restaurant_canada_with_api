@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 use DB;
 use Session;
-
+use App\Events\OrderPlaced;
 class CheckoutController extends Controller
 {
     use ResponseTrait;
@@ -79,7 +79,7 @@ class CheckoutController extends Controller
                 if ($order->save()) {
 
                     //$order->assignDeliveryBoy();
-
+                    event(new OrderPlaced($order));
                     /*==Insert Data into payment Table (New Order Received) ====*/
                     $insertedId = DB::table('payments')->insertGetId(
                         [

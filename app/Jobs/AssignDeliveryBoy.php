@@ -9,20 +9,25 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
+use App\Models\Driver;
 use App\Models\Order;
 use Illuminate\Support\Facades\Log;
+
 class AssignDeliveryBoy implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $order;
+    public $driver;
+    protected $tries = 3; // Set the maximum number of attempts
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, User $driver)
     {
         $this->order = $order;
+        $this->driver = $driver;
     }
 
     /**
@@ -32,20 +37,11 @@ class AssignDeliveryBoy implements ShouldQueue
      */
     public function handle()
     {
-        $deliveryBoy = $this->findAvailableDeliveryBoy();
-        if ($deliveryBoy) {
-            $this->order->delivery_boy_id = $deliveryBoy->id;
-            $this->order->status = 'assigned';
-            $this->order->save();
-        } else {
-            // No available delivery boy, dispatch the job again after a delay
-            Log::info('No available delivery boy. Job will be retried.');
-            
+        try {
+            Log::info('Job Response', ['order_id' => $this->order->id,'driver_id' => $this->driver->id]);
+        } catch (\Exception $e) {
+            // Log or handle the exception
+            Log::error('Error processing AssignDeliveryBoy job: ' . $e->getMessage());
         }
-    }
-    protected function findAvailableDeliveryBoy()
-    {
-        // Logic to find the first available delivery boy
-        $deliveryBoy = User::where(['roleId' => 4,'status' => 5])->get();
     }
 }

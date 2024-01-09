@@ -15,11 +15,20 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // other payment fields...
-
             // Foreign key relationship with orders table
-            $table->unsignedBigInteger('order_id')->index()->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-
+            $table->unsignedBigInteger('order_id')->index()->nullable()->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            // other payment fields...
+            $table->double('total',8,2)->nullable()->default(0.00);
+            $table->double('discount',8,2)->nullable()->default(0.00);
+            $table->double('delivery_fee',8,2)->nullable()->default(0.00);
+            $table->double('payable',8,2)->nullable()->comment('Total-discount=total+deliveryfee')->default(0.00);
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('restaurant_id');
+            $table->integer('owner_id');
+            $table->string('status')->nullable();
+            $table->string('method')->comment('1=>Cash')->default();
             $table->timestamps();
         });
     }

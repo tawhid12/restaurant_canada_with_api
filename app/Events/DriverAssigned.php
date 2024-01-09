@@ -9,21 +9,19 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Order;
-use Illuminate\Support\Facades\Log;
-class OrderPlaced
+
+class DriverAssigned
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $order;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct()
     {
-        Log::info('OrderPlaced event created', ['order_id' => $order->id]);
-        $this->order = $order;
+        //
     }
 
     /**

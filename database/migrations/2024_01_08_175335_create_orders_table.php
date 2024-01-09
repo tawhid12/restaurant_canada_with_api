@@ -35,8 +35,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('delivery_address_id')->index()->nullable();
             $table->foreign('delivery_address_id')->references('id')->on('delivery_addresses')->onDelete('cascade');
             // Foreign key relationship with payments table
-            $table->unsignedBigInteger('payment_id')->index()->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
-            
+            $table->unsignedBigInteger('payment_id')->index()->nullable()->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->timestamps();
         });
     }

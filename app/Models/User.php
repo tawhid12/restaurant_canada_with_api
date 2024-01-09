@@ -35,4 +35,8 @@ class User extends Model
 	protected $casts = [
         'ver_code_send_at' => 'datetime'
     ];
+    public function driver()
+    {
+        return $this->hasOne(Driver::class);
+    }
 }

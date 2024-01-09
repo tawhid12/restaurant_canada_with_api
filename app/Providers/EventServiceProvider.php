@@ -18,9 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        OrderPlaced::class => [
-            OrderPlacedListener::class,
+        'App\Events\OrderPlaced' => [
+            'App\Listners\AssignDriver',
         ],
+        'App\Events\DriverAssigned' => [
+            'App\Listners\DriverAccepted',
+        ]
     ];
 
     /**
