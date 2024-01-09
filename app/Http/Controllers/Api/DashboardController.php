@@ -74,8 +74,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -83,7 +83,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
@@ -114,8 +114,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -123,7 +123,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
@@ -154,8 +154,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -163,7 +163,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
@@ -196,7 +196,7 @@ class DashboardController extends Controller
 
     foreach ($order->order_detl as $cart) {
       $order_data[]   = array(
-        'food_id' => $cart->food?->name,
+        'food_id' => $cart->food?$cart->food->name : null,
         'user_id' => $cart->user_id,
         'quantity' => $cart->quantity,
         'price_per_qty' => $cart->price,
@@ -204,8 +204,8 @@ class DashboardController extends Controller
     }
     $data = array(
       'id' => $order->id,
-      'customer' => $order->user?->name,
-      'restaurant' => $order->restaurant?->name,
+      'customer' => $order->user?$order->user->name : null,
+      'restaurant' => $order->restaurant?$order->restaurant->name : null,
       'order_detl' => $order_data,
       'delivery_address' => $order->delivery_address,
       'payment' => $order->payment,
@@ -236,8 +236,8 @@ class DashboardController extends Controller
       $order->save();
       $order_data = [
         //'id' => $order->id,
-        'customer' => $order->user?->name,
-        'restaurant' => $order->restaurant?->name,
+        'customer' => $order->user?$order->user->name : null,
+        'restaurant' => $order->restaurant?$order->restaurant->name : null,
         'order_detl' => [],
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
@@ -245,7 +245,7 @@ class DashboardController extends Controller
 
       foreach ($order->order_detl as $cart) {
         $order_data['order_detl'][] = [
-          'food_id' => $cart->food?->name,
+          'food_id' => $cart->food?$cart->food->name : null,
           'user_id' => $cart->user_id,
           'quantity' => $cart->quantity,
           'price_per_qty' => $cart->price,
@@ -283,8 +283,8 @@ class DashboardController extends Controller
 
       $order_data = [
         //'id' => $order->id,
-        'customer' => $order->user?->name,
-        'restaurant' => $order->restaurant?->name,
+        'customer' => $order->user?$order->user->name : null,
+        'restaurant' => $order->restaurant?$order->restaurant->name : null,
         'order_detl' => [],
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
@@ -292,7 +292,7 @@ class DashboardController extends Controller
 
       foreach ($order->order_detl as $cart) {
         $order_data['order_detl'][] = [
-          'food_id' => $cart->food?->name,
+          'food_id' => $cart->food?$cart->food->name : null,
           'user_id' => $cart->user_id,
           'quantity' => $cart->quantity,
           'price_per_qty' => $cart->price,
@@ -328,8 +328,8 @@ class DashboardController extends Controller
       $order->save();
       $order_data = [
         //'id' => $order->id,
-        'customer' => $order->user?->name,
-        'restaurant' => $order->restaurant?->name,
+        'customer' => $order->user?$order->user->name : null,
+        'restaurant' => $order->restaurant?$order->restaurant->name : null,
         'order_detl' => [],
         'delivery_address' => $order->delivery_address,
         'payment' => $order->payment,
@@ -337,7 +337,7 @@ class DashboardController extends Controller
 
       foreach ($order->order_detl as $cart) {
         $order_data['order_detl'][] = [
-          'food_id' => $cart->food?->name,
+          'food_id' => $cart->food?$cart->food->name : null,
           'user_id' => $cart->user_id,
           'quantity' => $cart->quantity,
           'price_per_qty' => $cart->price,
@@ -369,8 +369,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -378,7 +378,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
@@ -409,8 +409,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -418,7 +418,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
@@ -451,8 +451,8 @@ class DashboardController extends Controller
       foreach ($orders as $order) {
         $order_data = [
           //'id' => $order->id,
-          'customer' => $order->user?->name,
-          'restaurant' => $order->restaurant?->name,
+          'customer' => $order->user?$order->user->name : null,
+          'restaurant' => $order->restaurant?$order->restaurant->name : null,
           'order_detl' => [],
           'delivery_address' => $order->delivery_address,
           'payment' => $order->payment,
@@ -460,7 +460,7 @@ class DashboardController extends Controller
 
         foreach ($order->order_detl as $cart) {
           $order_data['order_detl'][] = [
-            'food_id' => $cart->food?->name,
+            'food_id' => $cart->food?$cart->food->name : null,
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
