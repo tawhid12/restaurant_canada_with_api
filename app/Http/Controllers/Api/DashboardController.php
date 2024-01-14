@@ -97,7 +97,7 @@ class DashboardController extends Controller
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
-      return response()->json(array('errors' => [0 => 'No Data found']), 400);
+      return response()->json(array('errors' => [0 => 'No Data found']), 200);
   }
   public function processingOrder($token)
   {
