@@ -87,7 +87,7 @@ class DashboardController extends Controller
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
-            'order_time' => $cart->created_at->format('Y-m-d H:i:s')
+            'order_time' => $cart->created_at->format('H:i:s')
           ];
         }
         $data[] = $order_data;
