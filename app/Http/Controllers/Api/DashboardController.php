@@ -87,6 +87,7 @@ class DashboardController extends Controller
             'user_id' => $cart->user_id,
             'quantity' => $cart->quantity,
             'price_per_qty' => $cart->price,
+            'order_date' => $cart->created_at->format('m-d-Y'),
             'order_time' => $cart->created_at->format('H:i:s')
           ];
         }
