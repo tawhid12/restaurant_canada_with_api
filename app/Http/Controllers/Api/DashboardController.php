@@ -59,7 +59,6 @@ class DashboardController extends Controller
   }
   public function pendingOrder($token)
   {
-    echo 'ok';die;
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
