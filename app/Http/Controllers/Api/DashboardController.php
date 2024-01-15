@@ -137,7 +137,7 @@ class DashboardController extends Controller
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
-      return response()->json(array('errors' => [0 => 'No Data found']), 400);
+    return response()->json(array('data' => []), 200);
   }
   public function completeOrder($token)
   {
@@ -177,7 +177,7 @@ class DashboardController extends Controller
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
-      return response()->json(array('errors' => [0 => 'No Data found']), 400);
+    return response()->json(array('data' => []), 200);
   }
   public function orderById($token, $id)
   {
