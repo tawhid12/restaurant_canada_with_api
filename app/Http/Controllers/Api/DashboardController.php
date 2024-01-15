@@ -59,6 +59,7 @@ class DashboardController extends Controller
   }
   public function pendingOrder($token)
   {
+    echo 'ok';die;
     $user = User::where('api_token', $token)->first();
     if (!$user)
       return response()->json(array('errors' => [0 => 'Token is not valid']), 400);
@@ -97,7 +98,7 @@ class DashboardController extends Controller
     if (!empty($data) && count($data) > 0)
       return response()->json(array('data' => $data), 200);
     else
-      return response()->json(array('errors' => [0 => 'No Data found']), 200);
+      return response()->json(array('data' => []), 200);
   }
   public function processingOrder($token)
   {
