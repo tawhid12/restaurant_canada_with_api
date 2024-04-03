@@ -220,6 +220,7 @@ Route::get('/restaurant-search', [FrontController::class,'search'])->name('resta
 Route::get('/restaurant-listing/near', [RestraurantListingController::class,'nearestRestaurant'])->name('nearestRestaurant');
 Route::get('/restaurant-listing/{id}', [RestraurantListingController::class,'index'])->name('restaurantlisting');
 Route::get('/restaurant-details/{id}', [RestaurantDetailsController::class,'index'])->name('restaurantDetl');
+Route::get('/panta/ilish/registration', [FrontController::class,'registration'])->name('festivalReg');
 
 // Customer
 Route::group(['middleware' => 'isDeliveryBoy'], function(){
