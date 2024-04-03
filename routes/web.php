@@ -224,6 +224,7 @@ Route::get('/restaurant-listing/{id}', [RestraurantListingController::class,'ind
 Route::get('/restaurant-details/{id}', [RestaurantDetailsController::class,'index'])->name('restaurantDetl');
 Route::resource('festival_regs', FestivalRegController::class);
 Route::resource('tickets', TicketController::class);
+Route::post('/tickets/upload', [TicketController::class, 'upload'])->name('tickets.upload');
 
 // Customer
 Route::group(['middleware' => 'isDeliveryBoy'], function(){

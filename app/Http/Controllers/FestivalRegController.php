@@ -55,7 +55,7 @@ class FestivalRegController extends Controller
      */
     public function show(FestivalReg $festivalReg)
     {
-        //
+        return view('festival_regs.show', compact('festivalReg'));
     }
 
     /**
@@ -66,7 +66,7 @@ class FestivalRegController extends Controller
      */
     public function edit(FestivalReg $festivalReg)
     {
-        //
+        return view('festival_regs.edit', compact('festivalReg'));
     }
 
     /**
@@ -78,7 +78,16 @@ class FestivalRegController extends Controller
      */
     public function update(Request $request, FestivalReg $festivalReg)
     {
-        //
+        $request->validate([
+            'email' => 'required|email|unique:festival_regs,email,' . $festivalReg->id,
+            'mobile' => 'required|unique:festival_regs,mobile,' . $festivalReg->id,
+            'ticket_number' => 'required|unique:festival_regs,ticket_number,' . $festivalReg->id,
+        ]);
+
+        $festivalReg->update($request->all());
+
+        return redirect()->route('festival_regs.index')
+            ->with('success', 'Registration updated successfully');
     }
 
     /**
@@ -89,6 +98,9 @@ class FestivalRegController extends Controller
      */
     public function destroy(FestivalReg $festivalReg)
     {
-        //
+        $festivalReg->delete();
+
+        return redirect()->route('festival_regs.index')
+            ->with('success', 'Registration deleted successfully');
     }
 }
