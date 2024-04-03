@@ -1,8 +1,8 @@
 <section class="section pt-5 pb-5 bg-white homepage-add-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-12">
-                    <div class="products-box">
+                <div class="col-12">
+                    <div class="products-box d-flex justify-content-center align-items-center my-3">
                         <a href=""><img alt="" src="{{asset('')}}assets/img/panta-ilish.jpg" class="img-fluid rounded"></a>
                     </div>
                 </div>
