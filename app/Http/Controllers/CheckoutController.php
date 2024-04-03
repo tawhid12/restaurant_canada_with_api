@@ -41,7 +41,7 @@ class CheckoutController extends Controller
             ]
         );
         if (!session()->get('user'))
-            return redirect(route('signInForm'))->with($this->responseMessage(false, null, "you have to login or Signup"));
+            return redirect(route('signInForm'));
 
 
         $cart = session()->get('cart', []);
