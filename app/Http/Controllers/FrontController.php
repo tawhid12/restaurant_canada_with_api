@@ -46,7 +46,5 @@ class FrontController extends Controller
         $states        = State::all();
         return view('restaurant-listing',compact('restaurants','states','cities','state_id'));
     }
-    public function registration(){
-        return view('festival-reg');
-    }
+
 }

@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="products-box d-flex justify-content-center align-items-center my-3">
-                        <a href="{{route('festivalReg')}}"><img alt="" src="{{asset('')}}assets/img/panta-ilish.jpg" class="img-fluid rounded"></a>
+                        <a href="{{route('festival_regs.create')}}"><img alt="" src="{{asset('')}}assets/img/panta-ilish.jpg" class="img-fluid rounded"></a>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">

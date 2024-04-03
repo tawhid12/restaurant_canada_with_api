@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FestivalReg extends Model
 {
     use HasFactory;
+    protected $fillable = ['fullName','email', 'mobile', 'ticket_number'];
 }

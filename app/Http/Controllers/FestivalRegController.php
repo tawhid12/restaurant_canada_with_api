@@ -14,7 +14,8 @@ class FestivalRegController extends Controller
      */
     public function index()
     {
-        //
+        $festivalRegs = FestivalReg::all();
+        return view('festival_regs.index', compact('festivalRegs'));
     }
 
     /**
@@ -24,7 +25,7 @@ class FestivalRegController extends Controller
      */
     public function create()
     {
-        //
+        return view('festival-reg');
     }
 
     /**
@@ -35,7 +36,15 @@ class FestivalRegController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|email|unique:festival_regs',
+            'mobile' => 'required|unique:festival_regs',
+            'ticket_number' => 'required|unique:festival_regs',
+        ]);
+        FestivalReg::create($request->all());
+
+        return redirect()->route('festival_regs.index')
+            ->with('success', 'Registration created successfully.');
     }
 
     /**

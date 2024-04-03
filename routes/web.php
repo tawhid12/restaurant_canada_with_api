@@ -22,6 +22,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FestivalRegController;
+use App\Http\Controllers\TicketController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -220,7 +222,8 @@ Route::get('/restaurant-search', [FrontController::class,'search'])->name('resta
 Route::get('/restaurant-listing/near', [RestraurantListingController::class,'nearestRestaurant'])->name('nearestRestaurant');
 Route::get('/restaurant-listing/{id}', [RestraurantListingController::class,'index'])->name('restaurantlisting');
 Route::get('/restaurant-details/{id}', [RestaurantDetailsController::class,'index'])->name('restaurantDetl');
-Route::get('/panta/ilish/registration', [FrontController::class,'registration'])->name('festivalReg');
+Route::resource('festival_regs', FestivalRegController::class);
+Route::resource('tickets', TicketController::class);
 
 // Customer
 Route::group(['middleware' => 'isDeliveryBoy'], function(){

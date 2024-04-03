@@ -15,6 +15,10 @@ class CreateFestivalRegsTable extends Migration
     {
         Schema::create('festival_regs', function (Blueprint $table) {
             $table->id();
+            $table->string('fullName')->nullable();
+            $table->string('email')->unique();
+            $table->string('mobile')->unique();
+            $table->string('ticket_number')->unique();
             $table->timestamps();
         });
     }
