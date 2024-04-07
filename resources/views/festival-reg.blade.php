@@ -15,11 +15,21 @@
               Registration Form
             </div>
             <div class="card-body">
-              <form>
-                <div class="form-group">
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+              <form method="post" action="{{ route('festival_regs.store') }}">
+                @csrf
+                {{-- <div class="form-group">
                   <label for="fullName">Full Name</label>
                   <input type="text" class="form-control" name="fullName" placeholder="Enter your full name">
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label for="mobileNumber">Mobile Number</label>
                   <input type="tel" class="form-control" name="mobileNumber" placeholder="Enter your mobile number">
