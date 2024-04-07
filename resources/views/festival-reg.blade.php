@@ -32,7 +32,7 @@
                 </div> --}}
                 <div class="form-group">
                   <label for="mobileNumber">Mobile Number</label>
-                  <input type="tel" class="form-control" name="mobileNumber" placeholder="Enter your mobile number">
+                  <input type="tel" class="form-control" name="mobile" placeholder="Enter your mobile number">
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                   <label for="ticketNumber">Ticket Number</label>
-                  <input type="text" class="form-control" name="ticketNumber" placeholder="Enter your ticket number">
+                  <input type="text" class="form-control" name="ticket_number" placeholder="Enter your ticket number">
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
               </form>
