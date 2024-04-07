@@ -44,7 +44,7 @@ class FestivalRegController extends Controller
         $festivalReg = FestivalReg::create($request->all());
         if ($festivalReg) {
             // Send email with ticket information
-            Mail::send('email.ticket', ['mobile' => $request->mobile, 'ticketNumber' => $request->ticket_number], function($message) use($request){
+            Mail::send('ticket', ['mobile' => $request->mobile, 'ticketNumber' => $request->ticket_number], function($message) use($request){
                 $message->from('no-reply@khanapina.bdhscanada.com', 'Khanapina');
                 $message->to($request->email);
                 $message->subject('Your Festival Ticket Information');
