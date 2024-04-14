@@ -74,7 +74,8 @@
             </div>
         @endif
         <div class="header">
-            <img src="{{ asset('path/to/your/logo.png') }}" alt="Festival Logo">
+            <img alt="" src="{{ asset('') }}assets/img/panta-ilish.jpg"
+                            class="img-fluid rounded">
         </div>
         @if (isset($festivalReg))
             <div class="ticket-info">
