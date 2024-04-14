@@ -41,6 +41,12 @@ class FestivalRegController extends Controller
             'mobile' => 'required|unique:festival_regs',
             'ticket_number' => 'required|unique:festival_regs',
         ]);
+        // Check if the ticket number exists in the tickets table
+        $ticketExists = Ticket::where('ticket_number', $request->ticket_number)->exists();
+
+        if (!$ticketExists) {
+            return redirect()->back()->with('error', 'Ticket number does not exist.'); // Redirect back with an error message
+        }
         $festivalReg = FestivalReg::create($request->all());
         if ($festivalReg) {
             // Send email with ticket information
