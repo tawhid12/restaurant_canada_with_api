@@ -6,12 +6,25 @@
     <title>Ticket Information</title>
 </head>
 <body>
-    @php dd($festivalReg); @endphp
-    <h1>Ticket Information</h1>
-    <p>Your ticket details:</p>
-    <ul>
-        <li><strong>Mobile:</strong> {{ $mobile }}</li>
-        <li><strong>Ticket Number:</strong> {{ $ticketNumber }}</li>
-    </ul>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(isset($festivalReg))
+        <h1>Ticket Information</h1>
+        <p>Your ticket details:</p>
+        <ul>
+            <li><strong>Mobile:</strong> {{ $festivalReg->mobile }}</li>
+            <li><strong>Ticket Number:</strong> {{ $festivalReg->ticket_number }}</li>
+        </ul>
+    @endif
 </body>
 </html>
