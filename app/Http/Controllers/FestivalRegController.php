@@ -58,7 +58,7 @@ class FestivalRegController extends Controller
             });
         }
 
-        return redirect()->route('festival_regs.index')
+        return view('ticket')
             ->with('success', 'Registration created successfully.');
     }
 
