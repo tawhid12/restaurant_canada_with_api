@@ -68,9 +68,9 @@
 <body>
 
     <div class="container">
-        @if (isset($successMessage))
+        @if (isset($success))
             <div class="alert alert-success">
-                {{ $successMessage }}
+                {{ $success }}
             </div>
         @endif
         <div class="header">
