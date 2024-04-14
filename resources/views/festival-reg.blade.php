@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label for="fullName">Full Name</label>
                                 <input type="text" class="form-control" name="fullName"
-                                    placeholder="Enter your full name">
+                                    placeholder="Enter your full name" value="{{ old('fullName') }}">
                             </div>
                             <div class="form-group">
                                 <label for="mobileNumber">Mobile Number</label>
