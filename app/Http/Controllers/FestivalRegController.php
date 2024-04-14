@@ -63,7 +63,7 @@ class FestivalRegController extends Controller
             });
         }
 
-        return view('ticket', ['festivalReg' => $festivalReg])->with('success', 'Registration created successfully.');
+        return view('ticket', ['festivalReg' => $festivalReg])->with('success', 'Registration  Successfull.');
     }
 
     /**
