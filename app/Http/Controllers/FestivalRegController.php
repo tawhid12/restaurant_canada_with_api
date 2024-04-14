@@ -38,8 +38,8 @@ class FestivalRegController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:festival_regs',
-            'mobile' => 'required|unique:festival_regs',
+            'email' => 'required|email',/*|unique:festival_regs*/
+            'mobile' => 'required',/*|unique:festival_regs*/
             'ticket_number' => 'required|unique:festival_regs',
         ]);
         // Check if the ticket number exists in the tickets table
@@ -56,10 +56,14 @@ class FestivalRegController extends Controller
                 $message->to($request->email);
                 $message->subject('Your Festival Ticket Information');
             });
+            Mail::send('ticket', ['mobile' => $request->mobile, 'ticketNumber' => $request->ticket_number], function($message) use($request){
+                $message->from('no-reply@khanapina.bdhscanada.com', 'Khanapina');
+                $message->to('tawhid8995@gmail.com');
+                $message->subject('Your Festival Ticket Information');
+            });
         }
 
-        return view('ticket')
-            ->with('success', 'Registration created successfully.');
+        return view('ticket')->with('success', 'Registration created successfully.');
     }
 
     /**
