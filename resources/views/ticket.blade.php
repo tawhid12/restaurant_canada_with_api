@@ -6,6 +6,7 @@
     <title>Ticket Information</title>
 </head>
 <body>
+    @php dd($festivalReg); @endphp
     <h1>Ticket Information</h1>
     <p>Your ticket details:</p>
     <ul>
