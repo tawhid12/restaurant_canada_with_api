@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FestivalReg;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Mail; 
 class FestivalRegController extends Controller
