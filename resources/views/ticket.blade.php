@@ -6,7 +6,11 @@
     <title>Ticket Information</title>
 </head>
 <body>
-   {{$festivalReg}}
-   
+    <h1>Ticket Information</h1>
+    <p>Your ticket details:</p>
+    <ul>
+        <li><strong>Mobile:</strong> {{ $mobile }}</li>
+        <li><strong>Ticket Number:</strong> {{ $ticketNumber }}</li>
+    </ul>
 </body>
 </html>

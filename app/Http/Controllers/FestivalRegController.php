@@ -62,7 +62,7 @@ class FestivalRegController extends Controller
                 $message->subject('Your Festival Ticket Information');
             });
         }
-
+        dd($festivalReg);
         return view('ticket',compact('festivalReg'))->with('success', 'Registration created successfully.');
     }
 
