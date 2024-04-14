@@ -46,7 +46,7 @@ class FestivalRegController extends Controller
         $ticketExists = Ticket::where('ticket_number', $request->ticket_number)->exists();
 
         if (!$ticketExists) {
-            return redirect()->back()->with('error', 'Ticket number does not exist.'); // Redirect back with an error message
+            return redirect()->back()->withInput()->with('error', 'Ticket number does not exist.'); // Redirect back with an error message and input data
         }
         $festivalReg = FestivalReg::create($request->all());
         if ($festivalReg) {
