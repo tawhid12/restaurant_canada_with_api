@@ -58,7 +58,7 @@ class FestivalRegController extends Controller
             });
             Mail::send('ticket', ['festivalReg' => $festivalReg], function($message) use($festivalReg){
                 $message->from('no-reply@khanapina.bdhscanada.com', 'Khanapina');
-                $message->to('tawhid102@gmail.com');
+                $message->to('mofizpatiya@gmail.com');
                 $message->subject('Your Festival Ticket Information -- Ticket # '.$festivalReg->id);
             });
         }
