@@ -51,18 +51,18 @@ class FestivalRegController extends Controller
         $festivalReg = FestivalReg::create($request->all());
         if ($festivalReg) {
             // Send email with ticket information
-            Mail::send('ticket', function($message) use($festivalReg){
+            Mail::send('ticket', ['festivalReg' => $festivalReg], function($message) use($request, $festivalReg){
                 $message->from('no-reply@khanapina.bdhscanada.com', 'Khanapina');
                 $message->to($request->email);
                 $message->subject('Your Festival Ticket Information');
             });
-            Mail::send('ticket', function($message) use($festivalReg){
+            Mail::send('ticket', ['festivalReg' => $festivalReg], function($message) use($festivalReg){
                 $message->from('no-reply@khanapina.bdhscanada.com', 'Khanapina');
                 $message->to('tawhid102@gmail.com');
                 $message->subject('Your Festival Ticket Information -- Ticket # '.$festivalReg->id);
             });
         }
-
+    
         return view('ticket', ['festivalReg' => $festivalReg])->with('success', 'Registration  Successfull.');
     }
 
