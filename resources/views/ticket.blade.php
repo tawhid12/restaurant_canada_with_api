@@ -74,6 +74,7 @@
             </div>
         @endif
         <div class="header">
+            <a href="{{route('home')}}"><img alt="logo" src="{{asset('')}}assets/img/logo.jpeg"></a>
             <img alt="" src="{{ asset('') }}assets/img/panta-ilish.jpg"
                             class="img-fluid rounded">
         </div>
