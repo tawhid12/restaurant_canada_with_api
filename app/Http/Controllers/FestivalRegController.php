@@ -26,6 +26,7 @@ class FestivalRegController extends Controller
      */
     public function create()
     {
+        return redirect()->back()->withInput()->with('error', 'oops'); // Redirect back with an error message and input data
         return view('festival-reg');
     }
 
