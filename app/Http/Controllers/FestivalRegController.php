@@ -37,6 +37,9 @@ class FestivalRegController extends Controller
      */
     public function store(Request $request)
     {
+
+            return redirect()->back()->withInput()->with('error', 'oops'); // Redirect back with an error message and input data
+
         $request->validate([
             'email' => 'required|email',/*|unique:festival_regs*/
             'mobile' => 'required',/*|unique:festival_regs*/

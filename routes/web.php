@@ -222,9 +222,9 @@ Route::get('/restaurant-search', [FrontController::class,'search'])->name('resta
 Route::get('/restaurant-listing/near', [RestraurantListingController::class,'nearestRestaurant'])->name('nearestRestaurant');
 Route::get('/restaurant-listing/{id}', [RestraurantListingController::class,'index'])->name('restaurantlisting');
 Route::get('/restaurant-details/{id}', [RestaurantDetailsController::class,'index'])->name('restaurantDetl');
-// Route::resource('festival_regs', FestivalRegController::class);
-// Route::resource('tickets', TicketController::class);
-// Route::post('/tickets/upload', [TicketController::class, 'upload'])->name('tickets.upload');
+Route::resource('festival_regs', FestivalRegController::class);
+Route::resource('tickets', TicketController::class);
+Route::post('/tickets/upload', [TicketController::class, 'upload'])->name('tickets.upload');
 
 // Customer
 Route::group(['middleware' => 'isDeliveryBoy'], function(){
