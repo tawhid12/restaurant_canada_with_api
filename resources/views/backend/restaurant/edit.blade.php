@@ -110,7 +110,7 @@
 					<div class="col-lg-4 mb-1">
 						<label> Delivery Time: </label>
 						<select name="delivery_time" class="select2 form-control">
-							<option hidden>Choose Delivery Slot</option>
+							<option value="" hidden>Choose Delivery Slot</option>
 							<option value="1" @if($restaurant->delivery_time == 1) selected @endif>15-20 Min</option>
 							<option value="2" @if($restaurant->delivery_time == 2) selected @endif>20-30 Min</option>
 							<option value="3" @if($restaurant->delivery_time == 3) selected @endif>30-40 Min</option>
