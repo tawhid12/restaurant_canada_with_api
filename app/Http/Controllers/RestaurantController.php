@@ -140,6 +140,7 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, $id)
     {
+        
         //dd($request);die;
         try {
             $resturant = Restaurant::find($id);
