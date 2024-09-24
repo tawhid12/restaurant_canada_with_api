@@ -73,7 +73,7 @@ Route::group(['middleware' => 'isSuperAdmin'], function(){
         Route::get('/getCity/{id}',[RestaurantController::class,'getCity'])->name('superadmin.getCity');
 
         /*====Restaurant Gallery==*/
-        //Route::resource('/gallery',GalleryController::class,['as' => 'superadmin']);
+        Route::resource('/gallery',GalleryController::class,['as' => 'superadmin']);
         Route::get('/all/restaurant',[RestaurantController::class,'allRestaurant'])->name('superadmin.allRestaurant');
         Route::get('/restaurant/{restaurant}/activate',[RestaurantController::class,'activateRestaurant'])->name('superadmin.restaurant.activate');
         Route::get('/changeresfeaturedStatus', [RestaurantController::class,'changerestaurantFeatured'])->name('superadmin.changerestaurantFeatured');
