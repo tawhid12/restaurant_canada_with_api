@@ -48,7 +48,7 @@
                             <img alt="Generic placeholder image" src="{{asset('storage/app/public/images/user/photo/'.$photo)}}"
                                 class="nav-osahan-pic rounded-pill">{{encryptor('decrypt', Session::get('username'))}}
                             @else
-                            <img alt="Generic placeholder image" src="{{asset('images/user/avatar.png')}}"
+                            <img alt="Generic placeholder image" src="{{asset('images/avatar.png')}}"
                                 class="nav-osahan-pic rounded-pill">{{encryptor('decrypt', Session::get('username'))}}
 							@endif
                         </a>
