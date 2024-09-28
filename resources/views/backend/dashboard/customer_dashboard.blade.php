@@ -21,7 +21,7 @@
                             @if($photo)
                             <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('storage/app/public/images/user/photo/'.$photo)}}" alt="user profile picture">
                             @else
-                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('public/images/avatar.png') }}" alt="User avatar">
+                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('/images/avatar.png') }}" alt="User avatar">
                             @endif
                             <div class="osahan-user-media-body">
                                 <h6 class="mb-2">{{encryptor('decrypt', Session::get('name'))}}</h6>
