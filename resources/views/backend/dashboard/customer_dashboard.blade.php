@@ -21,7 +21,7 @@
                             @if($photo)
                             <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('storage/app/public/images/user/photo/'.$photo)}}" alt="user profile picture">
                             @else
-                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('/')}}storage/app/public/images/user/photo/{{ Session::get('uphoto') }}" alt="User avatar">
+                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="{{asset('public/images/avatar.png') }}" alt="User avatar">
                             @endif
                             <div class="osahan-user-media-body">
                                 <h6 class="mb-2">{{encryptor('decrypt', Session::get('name'))}}</h6>
@@ -69,7 +69,7 @@
                             <div class="gold-members p-4">
                                 <a href="#">
                                     <div class="media">
-                                        <img class="mr-4" src="{{asset('/')}}storage/app/public/images/logo/{{$restaurant->logo}}" alt="Generic placeholder image">
+                                        <img class="mr-4" src="{{asset($restaurant->logo)}}" alt="Generic placeholder image">
                                         <div class="media-body">
                                             <span class="float-right text-info">Delivered on Mon, Nov 12, 7:18 PM <i class="icofont-check-circled text-success"></i></span>
                                             <h6 class="mb-2">
