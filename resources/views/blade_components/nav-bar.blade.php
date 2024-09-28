@@ -45,7 +45,7 @@
 					            //$photo= $UserData->details->photo; 
 				            @endphp
                             @if(!empty($photo))
-                            <img alt="Generic placeholder image" src="{{asset('storage/app/public/images/user/photo/'.$photo)}}"
+                            <img alt="Generic placeholder image" src="{{asset('/images/user/photo/'.$photo)}}"
                                 class="nav-osahan-pic rounded-pill">{{encryptor('decrypt', Session::get('username'))}}
                             @else
                             <img alt="Generic placeholder image" src="{{asset('/')}}storage/app/public/images/user/photo/{{ Session::get('uphoto') }}"
